@@ -1,0 +1,31 @@
+{
+  "user_email": "your-email@example.com",
+  "top_n": 10,
+  "dedup_lookback_days": 30,
+  "min_score_for_digest": 70,
+  "apply_threshold": 75,
+  "indeed_country_code": "GB",
+  "posted_within": "THREE",
+  "role_queries": [
+    { "keyword": "Junior Data Scientist", "category": "data" },
+    { "keyword": "Graduate Data Scientist", "category": "data" },
+    { "keyword": "Data Scientist", "category": "data" },
+    { "keyword": "Junior Machine Learning Engineer", "category": "ai_ml" },
+    { "keyword": "Junior AI Engineer", "category": "ai_ml" },
+    { "keyword": "Junior Data Analyst", "category": "data" },
+    { "keyword": "Data Analyst", "category": "data" }
+  ],
+  "locations": [
+    { "name": "Remote UK", "location": "United Kingdom", "workplace_types": ["Remote"], "priority": 1 },
+    { "name": "UK (any city)", "location": "United Kingdom", "workplace_types": ["Hybrid", "On-Site"], "priority": 1 },
+    {
+      "name": "Remote international (UK-eligible)",
+      "location": "Worldwide",
+      "workplace_types": ["Remote"],
+      "priority": 2,
+      "eligibility_filter": "must explicitly say UK / EMEA / worldwide — skip US-only"
+    }
+  ],
+  "db_path": "data/jobs.db",
+  "digest_dir": "digests"
+}

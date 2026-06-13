@@ -1,0 +1,16 @@
+# Never commit the live system's personal data
+*.db
+*.sqlite
+data/
+applications/
+digests/
+resumes/
+cover-letters/
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+.DS_Store
