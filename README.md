@@ -45,7 +45,7 @@ flowchart TD
 | **1. Configure** | One `config.json` holds every search query, location, and threshold | Behaviour is data, not hard-code — tune without touching logic |
 | **2. Search** | Fan out queries across a role × location matrix, in parallel | Many calls per run; failures are logged and skipped, never fatal |
 | **3. Dedupe** | Drop anything seen in the last 30 days (`source` + `posting_id`) | Idempotent — re-running never floods me with repeats |
-| **4. Score** | Each posting scored 0–100 vs my CV on a fixed rubric | Consistent, explainable triage with a one-line reason |
+| **4. Score** | Each posting scored 0–100 vs my CV on the rubric below (LLM-applied in the live system; this repo's demo ships pre-scored fixtures) | Consistent, explainable triage with a one-line reason |
 | **5. Store** | Upsert into SQLite with `INSERT OR IGNORE` on a unique key | Safe writes; the DB is the single source of truth |
 | **6. Select & enrich** | Take top N above threshold; pull full JD + company ratings | Spend expensive lookups only on the shortlist |
 | **7. Package** | Auto-generate a tailored CV + cover letter per strong match | The tedious bit, automated |
@@ -61,7 +61,9 @@ idempotent.
 
 ## The scoring design
 
-The triage rubric is the heart of the system — a weighted score with honest gates:
+The triage rubric is the heart of the system — a weighted score with honest gates. In the live
+system an LLM applies it to each posting; it lives here as the specification (the demo uses
+pre-scored fixtures, so there is deliberately no scoring code in this repo):
 
 - **Skill match (40%)** — resume skills present in the JD; *deductions* for required tools I lack
   (Spark, Snowflake, etc.) so the model can't reward a bad fit.
